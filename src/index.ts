@@ -1,38 +1,9 @@
-import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify'
-import { Server, IncomingMessage, ServerResponse } from 'http'
+import app from "./app";
 
-const server: FastifyInstance = Fastify({})
+const FASTIFY_PORT = Number(process.env.FASTIFY_PORT) || 3006;
 
-const opts: RouteShorthandOptions = {
-  schema: {
-    response: {
-      200: {
-        type: 'object',
-        properties: {
-          pong: {
-            type: 'string'
-          }
-        }
-      }
-    }
-  }
-}
+app.listen(FASTIFY_PORT);
 
-server.get('/ping', opts, async (request, reply) => {
-  return { pong: 'it worked!' }
-})
-
-const start = async () => {
-  try {
-    await server.listen(3000)
-
-    const address = server.server.address()
-    const port = typeof address === 'string' ? address : address?.port
-
-  } catch (err) {
-    server.log.error(err)
-    process.exit(1)
-  }
-}
-
-start()
+console.log(`🚀  Fastify server running on port ${FASTIFY_PORT}`);
+console.log(`Route index: /`);
+console.log(`Route user: /api/v1/user`);

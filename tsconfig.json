@@ -1,16 +1,25 @@
 {
+  "extends": "fastify-tsconfig",
   "compilerOptions": {
     "target": "es2015",
     "lib": ["es5"],
     "module": "commonjs",
     "rootDir": "src",
     "outDir": "dist",
+    "sourceMap": true,
     "resolveJsonModule": true,
     "allowJs": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "baseUrl": "."
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./src/**/*.ts"
+  ]
 }
